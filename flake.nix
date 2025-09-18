@@ -34,31 +34,23 @@
         };
       };
 
-      nvim = {
-        nvf.lib.neovimConfiguration {
-          inherit pkgs;
-          modules = [
-            (import ./core/clipboard.nix { })
-            (import ./core/keymap.nix { })
-            (import ./core/plugin.nix {
-              buildVimPlugin = pkgs.vimUtils.buildVimPlugin;
-              fetchFromGitHub = pkgs.fetchFromGitHub;
-              pkgs = pkgs;
-            })
-            (import ./core/vim_option.nix { })
-          ];
-        };
-
-        neovim.plugins = (import ./core/plugin.nix {
-          buildVimPlugin = pkgs.vimUtils.buildVimPlugin;
-          fetchFromGitHub = pkgs.fetchFromGitHub;
-          pkgs = pkgs;
-        })."virtcolumn.nvim";
+      nvim = nvf.lib.neovimConfiguration {
+        inherit pkgs;
+        modules = [
+          (import ./core/clipboard.nix { })
+          (import ./core/keymap.nix { })
+          (import ./core/plugin.nix {
+            buildVimPlugin = pkgs.vimUtils.buildVimPlugin;
+            fetchFromGitHub = pkgs.fetchFromGitHub;
+            pkgs = pkgs;
+          })
+          (import ./core/vim_option.nix { })
+        ];
       };
-      in
-      {
+    in
+    {
       # nix run .#nvim
       packages.nvim = nvim.neovim;
-      }
-      );
-      }
+    }
+    );
+}

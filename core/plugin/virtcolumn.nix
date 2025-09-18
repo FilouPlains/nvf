@@ -3,7 +3,6 @@
 }:
 
 {
-  "virtcolumn.nvim" = {
     package = buildVimPlugin {
       pname = "virtcolumn.nvim";
       version = "2023-12-15";
@@ -15,10 +14,4 @@
         hash = "sha256-4Q7dbgu/YxpHTLrMgGzJ2DaAuaH9VhkVTrtlbFmPYZY=";
       };
     };
-
-    setupModule = "virtcolumn";
-    setupOpts = {
-      option_name = true;
-    };
-  };
 }
