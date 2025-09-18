@@ -45,13 +45,8 @@
       };
     in
     {
-      devShells.default = pkgs.mkShell {
-        name = "nvf";
-
-        buildInputs = [
-	  nvim.neovim
-        ];
-      };
+      # nix run .#nvim
+      packages.nvim = nvim.neovim;
     }
     );
 }
