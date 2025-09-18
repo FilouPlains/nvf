@@ -21,30 +21,44 @@
       configModule = {
         config.vim = {
           theme = {
-	    enable = true;
-	    name = "nord";
-	  };
+            enable = true;
+            name = "nord";
+          };
 
-	  treesitter.enable = true;
+          treesitter.enable = true;
 
           filetree = {
-	    nvimTree.setupOpts.view.number = true;
-	    nvimTree.setupOpts.view.relativenumber = true;
-	  };
+            nvimTree.setupOpts.view.number = true;
+            nvimTree.setupOpts.view.relativenumber = true;
+          };
         };
       };
 
-      nvim = nvf.lib.neovimConfiguration {
-        inherit pkgs;
-        modules = [
-          (import ./core/keymap.nix { })
-          (import ./core/clipboard.nix { })
-	];
+      nvim = {
+        nvf.lib.neovimConfiguration {
+          inherit pkgs;
+          modules = [
+            (import ./core/clipboard.nix { })
+            (import ./core/keymap.nix { })
+            (import ./core/plugin.nix {
+              buildVimPlugin = pkgs.vimUtils.buildVimPlugin;
+              fetchFromGitHub = pkgs.fetchFromGitHub;
+              pkgs = pkgs;
+            })
+            (import ./core/vim_option.nix { })
+          ];
+        };
+
+        neovim.plugins = (import ./core/plugin.nix {
+          buildVimPlugin = pkgs.vimUtils.buildVimPlugin;
+          fetchFromGitHub = pkgs.fetchFromGitHub;
+          pkgs = pkgs;
+        })."virtcolumn.nvim";
       };
-    in
-    {
+      in
+      {
       # nix run .#nvim
       packages.nvim = nvim.neovim;
-    }
-    );
-}
+      }
+      );
+      }
