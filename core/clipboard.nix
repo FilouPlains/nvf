@@ -3,8 +3,8 @@
 {
   vim.clipboard = {
     enable = true;
-    providers.xclip.enable = true;
+    providers.wl-copy.enable = true;
 
-    register = "unnamedplus";
-  }
+    registers = "unnamedplus";
+  };
 }
