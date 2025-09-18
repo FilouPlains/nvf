@@ -34,13 +34,11 @@
         };
       };
 
-      keyConfig = import ./core/keymap.nix { };
-
       nvim = nvf.lib.neovimConfiguration {
         inherit pkgs;
         modules = [
-	  configModule
-	  keyConfig
+          (import ./core/keymap.nix { })
+          (import ./core/clipboard.nix { })
 	];
       };
     in
