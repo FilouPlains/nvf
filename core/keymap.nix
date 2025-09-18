@@ -61,13 +61,6 @@
       silent = true;
       action = "<cmd>m -2<CR>";
     }
-    # Copy.
-    {
-      mode = ["v"];
-      key = "Y";
-      silent = true;
-      action = "\"+y";
-    }
     # Retab.
     {
       mode = ["n"];
