@@ -36,6 +36,7 @@
 
       nvim = nvf.lib.neovimConfiguration {
         inherit pkgs;
+
         modules = [
           (import ./core/clipboard.nix { })
           (import ./core/keymap.nix { })

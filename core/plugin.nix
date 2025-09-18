@@ -12,6 +12,17 @@
     }).package
   ];
 
+  vim.luaConfigRC = {
+    virtcolumn = ''
+      require("virtcolumn").setup { }
+    '';
+
+    aerial-nvim = ''
+      require('aerial').setup { }
+    '';
+
+  };
+
   # config.vim.lazy.plugins = {
   #   "aerial.nvim" = {
   #     package = pkgs.vimPlugins.aerial-nvim;
