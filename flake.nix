@@ -50,8 +50,8 @@
       };
     in
     {
-      # nix run .#nvim
-      packages.nvim = nvim.neovim;
+      # nix run .
+      packages.default = nvim.neovim;
     }
     );
 }
