@@ -40,6 +40,7 @@
         modules = [
           (import ./core/clipboard.nix { })
           (import ./core/keymap.nix { })
+          (import ./core/language.nix { })
           (import ./core/plugin.nix {
             buildVimPlugin = pkgs.vimUtils.buildVimPlugin;
             fetchFromGitHub = pkgs.fetchFromGitHub;
