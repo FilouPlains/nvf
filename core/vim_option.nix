@@ -6,8 +6,11 @@
     shiftwidth = 4;
   };
 
-  vim.ui.smartcolumn = {
-    enable = true;
-    setupOpts.colorcolumn = "80";
+  vim.luaConfigRC.configuration =  /* lua */ ''
+    vim.cmd("set colorcolumn=80")
+  '';
+
+  vim.globals = {
+    virtcolumn_char = "┃";
   };
 }
