@@ -43,7 +43,6 @@
           (import ./core/plugin.nix {
             buildVimPlugin = pkgs.vimUtils.buildVimPlugin;
             fetchFromGitHub = pkgs.fetchFromGitHub;
-            pkgs = pkgs;
           })
           (import ./core/vim_option.nix { })
         ];
