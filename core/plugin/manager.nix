@@ -16,7 +16,7 @@ let
 
   # Import and merge sets.
   imported_set = map (file: import file { }) (nvf_file_path);
-  nvf_package = lib.foldl' (lib.recursiveUpdate ({ }) (imported_set));
+  nvf_package = (lib.foldl' (lib.recursiveUpdate) ({ })) (imported_set);
 
   # ======================
   # Setting local packages
@@ -24,7 +24,7 @@ let
   local_package_path = ./local;
 
   # List nix files
-  local_file = builtins.attrNames (builtins.readDir nvf_package_path);
+  local_file = builtins.attrNames (builtins.readDir local_package_path);
   local_nix_file = builtins.filter (name: (builtins.match (".*\\.nix") (name)) != null) (local_file);
   # Convert to real path.
   local_file_path = map (name: local_package_path + "/${name}") (local_nix_file);
@@ -35,8 +35,7 @@ let
   # ===========
   # Final merge
   # ===========
-  #merged_set = lib.recursiveUpdate (nvf_package) ({ vim.startPlugins = local_package; });
-  merged_set = lib.recursiveUpdate ({}) ({ vim.startPlugins = local_package; });
+  merged_set = lib.recursiveUpdate (nvf_package) ({ vim.startPlugins = local_package; });
 in
 merged_set
 # {
