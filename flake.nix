@@ -8,47 +8,49 @@
     nvf.url = "github:notashelf/nvf";
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , flake-utils
-    , nvf
-    }:
-    flake-utils.lib.eachDefaultSystem (system:
-    let
-      pkgs = import nixpkgs { inherit system; };
+  outputs = {
+    self,
+    nixpkgs,
+    flake-utils,
+    nvf,
+  }:
+    flake-utils.lib.eachDefaultSystem (
+      system: let
+        pkgs = import nixpkgs {inherit system;};
 
-      configModule = {
-        config.vim = {
-          theme = {
-            enable = true;
-            name = "nord";
-          };
+        configModule = {
+          config.vim = {
+            theme = {
+              enable = true;
+              name = "nord";
+            };
 
-          treesitter.enable = true;
+            treesitter.enable = true;
 
-          filetree = {
-            nvimTree.setupOpts.view.number = true;
-            nvimTree.setupOpts.view.relativenumber = true;
+            filetree = {
+              nvimTree.setupOpts.view.number = true;
+              nvimTree.setupOpts.view.relativenumber = true;
+            };
           };
         };
-      };
 
-      nvim = nvf.lib.neovimConfiguration {
-        inherit pkgs;
+        nvim = nvf.lib.neovimConfiguration {
+          inherit pkgs;
 
-        modules = [
-          (import ./core/clipboard.nix { })
-          (import ./core/keymap.nix { })
-          (import ./core/language.nix { })
-          (import ./core/plugin/manager.nix { pkgs = pkgs; lib = pkgs.lib; })
-          (import ./core/vim_option.nix { })
-        ];
-      };
-    in
-    {
-      # nix run .
-      packages.default = nvim.neovim;
-    }
+          modules = [
+            (import ./core/clipboard.nix {})
+            (import ./core/keymap.nix {})
+            (import ./core/language.nix {})
+            (import ./core/plugin/manager.nix {
+              pkgs = pkgs;
+              lib = pkgs.lib;
+            })
+            (import ./core/vim_option.nix {})
+          ];
+        };
+      in {
+        # nix run .
+        packages.default = nvim.neovim;
+      }
     );
 }

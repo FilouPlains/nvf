@@ -1,10 +1,7 @@
-{ pkgs }:
-
-let
+{pkgs}: let
   inherit (pkgs) fetchFromGitHub;
   inherit (pkgs.vimUtils) buildVimPlugin;
-in
-{
+in {
   package = buildVimPlugin {
     pname = "virtcolumn.nvim";
     version = "2023-12-15";
