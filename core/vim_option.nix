@@ -6,7 +6,7 @@
     shiftwidth = 4;
   };
 
-  vim.luaConfigRC.configuration =  /* lua */ ''
+  vim.luaConfigRC.configuration = /* lua */ ''
     vim.cmd("set colorcolumn=80")
   '';
 

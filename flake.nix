@@ -41,10 +41,7 @@
           (import ./core/clipboard.nix { })
           (import ./core/keymap.nix { })
           (import ./core/language.nix { })
-          (import ./core/plugin.nix {
-            buildVimPlugin = pkgs.vimUtils.buildVimPlugin;
-            fetchFromGitHub = pkgs.fetchFromGitHub;
-          })
+          (import ./core/plugin/manager.nix { pkgs = pkgs; lib = pkgs.lib; })
           (import ./core/vim_option.nix { })
         ];
       };

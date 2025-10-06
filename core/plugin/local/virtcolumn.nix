@@ -1,7 +1,9 @@
-{ buildVimPlugin
-, fetchFromGitHub
-}:
+{ pkgs }:
 
+let
+  inherit (pkgs) fetchFromGitHub;
+  inherit (pkgs.vimUtils) buildVimPlugin;
+in
 {
   package = buildVimPlugin {
     pname = "virtcolumn.nvim";
