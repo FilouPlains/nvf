@@ -41,6 +41,7 @@
             (import ./core/clipboard.nix {})
             (import ./core/keymap.nix {})
             (import ./core/language.nix {})
+            (import ./core/lsp.nix {})
             (import ./core/plugin/manager.nix {
               pkgs = pkgs;
               lib = pkgs.lib;
