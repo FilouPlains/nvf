@@ -1,10 +1,11 @@
-{}: {
-  vim.options = {
+_: {
+vim = {
+  options = {
     tabstop = 4;
     shiftwidth = 4;
   };
 
-  vim.luaConfigRC.configuration =
+  luaConfigRC.configuration =
     /*
     lua
     */
@@ -12,7 +13,13 @@
       vim.cmd("set colorcolumn=80")
     '';
 
-  vim.globals = {
-    virtcolumn_char = "┃";
+  globals.virtcolumn_char = "┃";
+
+  treesitter.enable = true;
+
+  filetree = {
+    nvimTree.setupOpts.view.number = true;
+    nvimTree.setupOpts.view.relativenumber = true;
   };
+};
 }

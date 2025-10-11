@@ -1,4 +1,4 @@
-{}: {
+_: {
   vim.keymaps = [
     # Undo.
     {
@@ -88,14 +88,14 @@
     # Retab.
     {
       mode = ["n"];
-      key = "<Leader>t";
+      key = "t";
       silent = true;
       action = ":retab<CR>";
     }
     # Format.
     {
       mode = ["n"];
-      key = "<Leader>f";
+      key = "f";
       silent = true;
       action = ":lua require('conform').format({ async = false })<CR>";
     }

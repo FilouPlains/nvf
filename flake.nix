@@ -18,22 +18,6 @@
       system: let
         pkgs = import nixpkgs {inherit system;};
 
-        configModule = {
-          config.vim = {
-            theme = {
-              enable = true;
-              name = "nord";
-            };
-
-            treesitter.enable = true;
-
-            filetree = {
-              nvimTree.setupOpts.view.number = true;
-              nvimTree.setupOpts.view.relativenumber = true;
-            };
-          };
-        };
-
         nvim = nvf.lib.neovimConfiguration {
           inherit pkgs;
 
@@ -46,6 +30,7 @@
               pkgs = pkgs;
               lib = pkgs.lib;
             })
+            (import ./core/theme.nix {})
             (import ./core/vim_option.nix {})
           ];
         };
