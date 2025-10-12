@@ -99,5 +99,12 @@ _: {
       silent = true;
       action = ":lua require('conform').format({ async = false })<CR>";
     }
+    # Exit the terminal using <Esc> key.
+    {
+      mode = ["t"];
+      key = "<Esc>";
+      silent = true;
+      action = "<C-\\><C-n>";
+    }
   ];
 }
