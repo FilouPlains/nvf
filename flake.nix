@@ -36,7 +36,13 @@
         };
       in {
         # nix run .
-        packages.default = nvim.neovim;
+        packages.default = pkgs.buildEnv {
+          name = "nvim";
+          paths = [
+            nvim.neovim
+            pkgs.yazi
+          ];
+        };
       }
     );
 }
