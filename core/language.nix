@@ -19,6 +19,7 @@ _: {
 
     python = {
       enable = true;
+      format.type = "ruff";
       lsp.enable = true;
     };
 
