@@ -27,8 +27,8 @@
             (import ./core/language.nix {})
             (import ./core/lsp.nix {})
             (import ./core/plugin/manager.nix {
-              pkgs = pkgs;
-              lib = pkgs.lib;
+	      inherit pkgs;
+              inherit (pkgs) lib;
             })
             (import ./core/theme.nix {})
             (import ./core/vim_option.nix {})
@@ -39,7 +39,18 @@
         packages.default = pkgs.buildEnv {
           name = "nvim";
           paths = [
+            # ======
+            # Neovim
+            # ======
             nvim.neovim
+
+            # ============
+            # Dependancies
+            # ============
+            # S
+            pkgs.xsel
+
+            # Y
             pkgs.yazi
           ];
         };
