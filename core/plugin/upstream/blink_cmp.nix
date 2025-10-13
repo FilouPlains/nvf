@@ -3,8 +3,8 @@ _: {
     enable = true;
 
     mappings = {
-      next = "<Down>";
-      previous = "<Up>";
+      next = "<S-Down>";
+      previous = "<S-Up>";
       confirm = "<Tab>";
     };
 
