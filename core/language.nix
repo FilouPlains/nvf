@@ -3,6 +3,11 @@ _: {
     enableTreesitter = true;
     enableFormat = true;
 
+    lua = {
+      enable = true;
+      lsp.enable = true;
+    };
+
     markdown = {
       enable = true;
       lsp.enable = true;
@@ -12,9 +17,10 @@ _: {
       };
     };
 
-    lua = {
+    nix = {
       enable = true;
       lsp.enable = true;
+      extraDiagnostics.enable = true;
     };
 
     python = {
@@ -23,10 +29,9 @@ _: {
       lsp.enable = true;
     };
 
-    nix = {
+    r = {
       enable = true;
-      lsp.enable = true;
-      extraDiagnostics.enable = true;
+      format.type = "styler";
     };
   };
 }
