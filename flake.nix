@@ -22,12 +22,13 @@
           inherit pkgs;
 
           modules = [
+            (import ./core/autocmds.nix {inherit (pkgs) lib;})
             (import ./core/clipboard.nix {})
             (import ./core/keymap.nix {})
             (import ./core/language.nix {})
             (import ./core/lsp.nix {})
             (import ./core/plugin/manager.nix {
-	      inherit pkgs;
+              inherit pkgs;
               inherit (pkgs) lib;
             })
             (import ./core/theme.nix {})
