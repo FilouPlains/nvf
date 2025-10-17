@@ -2,7 +2,9 @@ _: {
   vim.terminal.toggleterm = {
     enable = true;
 
-    /* We cannot use `{}` syntaxe, as it is breaking things. */
+    /*
+    We cannot use `{}` syntaxe, as it is breaking things.
+    */
     setupOpts.direction = "vertical";
     setupOpts.size = 80;
 
@@ -11,7 +13,7 @@ _: {
       enable = true;
       direction = "float";
 
-      mappings.open = "g";
+      mappings.open = "G";
     };
   };
 }
