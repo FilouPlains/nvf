@@ -7,6 +7,7 @@
         key = "<C-z>";
         silent = true;
         action = ":u<CR>";
+        desc = "Undo.";
       }
       # Redo.
       {
@@ -14,6 +15,7 @@
         key = "<C-y>";
         silent = true;
         action = "<C-r>";
+        desc = "Redo.";
       }
       # Save.
       {
@@ -21,18 +23,21 @@
         key = "<C-s>";
         silent = true;
         action = ":w<CR>";
+        desc = "Save current file.";
       }
       {
         mode = ["v"];
         key = "<C-s>";
         silent = true;
         action = "<Esc>:w<CR>";
+        desc = "Save current file.";
       }
       {
         mode = ["i"];
         key = "<C-s>";
         silent = true;
         action = "<Esc>:w<CR>i<Right>";
+        desc = "Save current file.";
       }
       # Move lines down.
       {
@@ -40,12 +45,14 @@
         key = "<M-Down>";
         silent = true;
         action = ":m+1<CR>";
+        desc = "Move current line down.";
       }
       {
         mode = ["n"];
         key = "<M-j>";
         silent = true;
         action = ":m+1<CR>";
+        desc = "Move current line down.";
       }
       # Move selected lines down.
       {
@@ -53,12 +60,14 @@
         key = "<M-Down>";
         silent = true;
         action = ":m '>+1<CR>gv=gv";
+        desc = "Move current selected line down.";
       }
       {
         mode = ["v"];
         key = "<M-j>";
         silent = true;
         action = ":m '>+1<CR>gv=gv";
+        desc = "Move current selected line down.";
       }
       # Move lines up.
       {
@@ -66,12 +75,14 @@
         key = "<M-Up>";
         silent = true;
         action = ":m-2<CR>";
+        desc = "Move current line up.";
       }
       {
         mode = ["n"];
         key = "<M-k>";
         silent = true;
         action = ":m-2<CR>";
+        desc = "Move current line up.";
       }
       # Move selected lines up.
       {
@@ -79,12 +90,14 @@
         key = "<M-Up>";
         silent = true;
         action = ":m '<-2<CR>gv=gv";
+        desc = "Move current selected line up.";
       }
       {
         mode = ["v"];
         key = "<M-k>";
         silent = true;
         action = ":m '<-2<CR>gv=gv";
+        desc = "Move current selected line up.";
       }
       # Retab.
       {
@@ -92,6 +105,7 @@
         key = "t";
         silent = true;
         action = ":retab<CR>";
+        desc = "Replace all tabulation with the right number of spaces.";
       }
       # Format.
       {
@@ -99,6 +113,7 @@
         key = "f";
         silent = true;
         action = ":lua require('conform').format({ async = false })<CR>";
+        desc = "Format current file using conform.";
       }
       # Exit the terminal using <Esc> key.
       {
@@ -106,6 +121,7 @@
         key = "<Esc>";
         silent = true;
         action = "<C-\\><C-n>";
+        desc = "Define so <Esc> work in the terminal to switch back to “normal” mode.";
       }
       # Add "", (), {}, [], '', `` arround selection.
       {
