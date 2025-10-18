@@ -146,38 +146,37 @@
           symbolList;
 
         /*
-        Create the keymapping.
-        */
-        lambdaSymbolMapping = {
-          open,
-          close,
-        }: {
-          mode = ["v"];
-          # Open symbol as keymap.
-          key = open;
-          silent = true;
-          # Launch MiniSurround.add() and set back the selection.
-          # The selection is shift one the right.
-          action = ":<C-U>lua MiniSurround.add('visual')<CR>${close}gv<Right>o<Right>o";
-          desc = "Add ${open}${close} around current selection.";
-        };
+        General mapping function. Currying parttern.
 
-        /*
-        Same as above, just change the keymapping.
+        The main function take a set as parameter. If true, this bind `open` to
+        `key`. Else, if false, this bind `close` to key.
+
+        Then, it return taking in argument a set with open and close. This is
+        used to generate the keymaps.
         */
-        lambdaInvertSymbolMapping = {
-          open,
-          close,
-        }: {
-          mode = ["v"];
-          # Open symbol as keymap.
-          key = close;
-          silent = true;
-          action = ":<C-U>lua MiniSurround.add('visual')<CR>${close}gv<Right>o<Right>o";
-          desc = "Add ${open}${close} around current selection.";
-        };
+        lambdaGeneralMapping = {useOpen}: (
+          {
+            open,
+            close,
+          }: {
+            mode = ["v"];
+            # Open symbol as keymap.
+            key =
+              if useOpen
+              then open
+              else close;
+            silent = true;
+            # Launch MiniSurround.add() and set back the selection.
+            # The selection is shift one the right.
+            action = ":<C-U>lua MiniSurround.add('visual')<CR>${close}gv<Right>o<Right>o";
+            desc = "Add ${open}${close} around current selection.";
+          }
+        );
+
+        openSymbolMapping = lambdaGeneralMapping {useOpen = true;};
+        closeSymbolMapping = lambdaGeneralMapping {useOpen = false;};
       in
-        map lambdaSymbolMapping pairSymbolSet
-        ++ map lambdaInvertSymbolMapping pairSymbolSet
+        map openSymbolMapping pairSymbolSet
+        ++ map closeSymbolMapping pairSymbolSet
     );
 }
