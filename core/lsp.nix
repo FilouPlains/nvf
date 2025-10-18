@@ -7,7 +7,7 @@ _: {
       renameSymbol = "<Leader>r";
       hover = "?";
       goToDefinition = "<Leader>g";
-      openDiagnosticFloat = "D";
+      openDiagnosticFloat = "!";
     };
   };
 }
