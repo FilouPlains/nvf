@@ -16,24 +16,37 @@
   }:
     flake-utils.lib.eachDefaultSystem (
       system: let
+        # ===================
+        # Import Nix packages
+        # ===================
         pkgs = import nixpkgs {inherit system;};
 
+        # ===============
+        # Import NVF core
+        # ===============
+        core_path = ./core;
+
+        # List nix files
+        core_file = builtins.attrNames (builtins.readDir core_path);
+        core_nix_file = builtins.filter (name: (builtins.match ".*\\.nix" name) != null) core_file;
+        # Convert to real path.
+        core_file_path = map (name: core_path + "/${name}") core_nix_file;
+        core_package = map (file: import file {inherit pkgs;}) core_file_path;
+
+        # =========
+        # Setup NVF
+        # =========
         nvim = nvf.lib.neovimConfiguration {
           inherit pkgs;
 
-          modules = [
-            (import ./core/autocmds.nix {inherit (pkgs) lib;})
-            (import ./core/clipboard.nix {})
-            (import ./core/keymap.nix {inherit (pkgs) lib;})
-            (import ./core/language.nix {})
-            (import ./core/lsp.nix {})
-            (import ./core/plugin/manager.nix {
-              inherit pkgs;
-              inherit (pkgs) lib;
-            })
-            (import ./core/theme.nix {})
-            (import ./core/vim_option.nix {})
-          ];
+          modules =
+            core_package
+            ++ [
+              (import ./core/plugin/manager.nix {
+                inherit pkgs;
+                inherit (pkgs) lib;
+              })
+            ];
         };
       in {
         # nix run .

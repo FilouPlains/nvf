@@ -29,7 +29,7 @@
   local_file_path = map (name: local_package_path + "/${name}") local_nix_file;
 
   # Import sets.
-  local_package = map (file: (import file {inherit pkgs;}).package) local_file_path;
+  local_package = map (file: import file {inherit pkgs;}) local_file_path;
 
   # ===========
   # Final merge
