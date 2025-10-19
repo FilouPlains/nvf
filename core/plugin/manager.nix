@@ -14,8 +14,8 @@
   nvf_file_path = map (name: nvf_package_path + "/${name}") nvf_nix_file;
 
   # Import and merge sets.
-  imported_set = map (file: import file {}) nvf_file_path;
-  nvf_package = (lib.foldl' (lib.recursiveUpdate) {}) imported_set;
+  imported_set = map (file: import file {inherit pkgs;}) nvf_file_path;
+  nvf_package = (lib.foldl' lib.recursiveUpdate {}) imported_set;
 
   # ======================
   # Setting local packages
@@ -29,7 +29,7 @@
   local_file_path = map (name: local_package_path + "/${name}") local_nix_file;
 
   # Import sets.
-  local_package = map (file: (import file {pkgs = pkgs;}).package) local_file_path;
+  local_package = map (file: (import file {inherit pkgs;}).package) local_file_path;
 
   # ===========
   # Final merge

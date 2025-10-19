@@ -11,5 +11,11 @@ _: {
     friendly-snippets = {
       enable = true;
     };
+
+    sourcePlugins = {
+      ripgrep = {
+        enable = true;
+      };
+    };
   };
 }

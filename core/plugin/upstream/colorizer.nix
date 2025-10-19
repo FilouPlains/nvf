@@ -16,7 +16,7 @@ _: {
         tailwind = true;
       };
 
-      filetypes."*" = _;
+      filetypes."*" = {};
     };
   };
 }
