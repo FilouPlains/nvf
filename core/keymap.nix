@@ -218,14 +218,14 @@ in {
         ++ map closeSymbolMapping pairSymbolSet
     )
     ++ [
-      # Swapping `i` to `a` when going to insert mode.
+      # When exiting insert mode, shift one to the right.
       {
-        mode = ["n"];
-        key = "i";
+        mode = ["i"];
+        key = "<Esc>";
         silent = false;
         noremap = true;
-        action = "a";
-        desc = "Swap going to insert mode using `i` to `a`.";
+        action = "<Esc><Right>";
+        desc = "Shift one to the right after exiting insert modify.";
       }
     ];
 }
