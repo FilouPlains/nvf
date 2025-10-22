@@ -5,18 +5,46 @@ in {
     [
       # Undo.
       {
-        mode = ["n" "v" "i"];
+        mode = ["n"];
         key = "<C-z>";
         silent = true;
         action = ":u<CR>";
         desc = "Undo.";
       }
+      {
+        mode = ["v"];
+        key = "<C-z>";
+        silent = true;
+        action = "<Esc>:u<CR>gv";
+        desc = "Undo.";
+      }
+      {
+        mode = ["i"];
+        key = "<C-z>";
+        silent = true;
+        action = "<Esc>:u<CR>a";
+        desc = "Undo.";
+      }
       # Redo.
       {
-        mode = ["n" "v" "i"];
+        mode = ["n"];
         key = "<C-y>";
         silent = true;
         action = "<C-r>";
+        desc = "Redo.";
+      }
+      {
+        mode = ["v"];
+        key = "<C-y>";
+        silent = true;
+        action = "<Esc><C-r>gv";
+        desc = "Redo.";
+      }
+      {
+        mode = ["i"];
+        key = "<C-y>";
+        silent = true;
+        action = "<Esc><C-r>a";
         desc = "Redo.";
       }
       # Save.
@@ -31,14 +59,14 @@ in {
         mode = ["v"];
         key = "<C-s>";
         silent = true;
-        action = "<Esc>:w<CR>";
+        action = "<Esc>:w<CR>gv";
         desc = "Save current file.";
       }
       {
         mode = ["i"];
         key = "<C-s>";
         silent = true;
-        action = "<Esc>:w<CR>i<Right>";
+        action = "<Esc>:w<CR>a";
         desc = "Save current file.";
       }
       # Move lines down.
@@ -125,14 +153,6 @@ in {
         action = "<C-\\><C-n>";
         desc = "Define so <Esc> work in the terminal to switch back to “normal” mode.";
       }
-      # Add "", (), {}, [], '', `` arround selection.
-      {
-        mode = ["v"];
-        key = "(";
-        silent = false;
-        action = ":<C-U>lua MiniSurround.add('visual')<CR>)gv<Right>o<Right>o";
-        desc = "Add () arround current selection.";
-      }
     ]
     # To add `symbol` arround current selection.
     ++ (
@@ -196,5 +216,16 @@ in {
       in
         map openSymbolMapping pairSymbolSet
         ++ map closeSymbolMapping pairSymbolSet
-    );
+    )
+    ++ [
+      # Swapping `i` to `a` when going to insert mode.
+      {
+        mode = ["n"];
+        key = "i";
+        silent = false;
+        noremap = true;
+        action = "a";
+        desc = "Swap going to insert mode using `i` to `a`.";
+      }
+    ];
 }
