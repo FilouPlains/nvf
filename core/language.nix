@@ -2,6 +2,7 @@ _: {
   vim.languages = {
     enableTreesitter = true;
     enableFormat = true;
+    enableExtraDiagnostics = true;
 
     lua = {
       enable = true;
@@ -20,7 +21,6 @@ _: {
     nix = {
       enable = true;
       lsp.enable = true;
-      extraDiagnostics.enable = true;
     };
 
     python = {
@@ -32,6 +32,21 @@ _: {
     r = {
       enable = true;
       format.type = "styler";
+    };
+
+    yaml = {
+      enable = true;
+      lsp.enable = true;
+    };
+
+    html = {
+      enable = true;
+      treesitter.autotagHtml = true;
+    };
+
+    css = {
+      enable = true;
+      lsp.enable = true;
     };
   };
 }
