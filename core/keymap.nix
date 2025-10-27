@@ -168,6 +168,7 @@ in {
           "``"
           "''"
           "\"\""
+          "$$"
         ];
 
         /*
@@ -222,10 +223,73 @@ in {
       {
         mode = ["i"];
         key = "<Esc>";
-        silent = false;
+        silent = true;
         noremap = true;
         action = "<Esc><Right>";
         desc = "Shift one to the right after exiting insert modify.";
+      }
+    ]
+    # To switch pannel using <C-> + arrow keys or vim motion.
+    ++ (
+      let
+        keySet = {
+          "Left" = "h";
+          "Right" = "l";
+          "Up" = "k";
+          "Down" = "j";
+        };
+
+        lambdaGeneralShiftPannel = isArrow: (
+          name: value: {
+            mode = ["n"];
+            key =
+              if isArrow
+              then "<C-${name}>"
+              else "<C-${value}>";
+            silent = true;
+            action = "<C-w><${name}>";
+            desc = "Go to ${lib.strings.toLower name} pannel.";
+          }
+        );
+
+        lambdaShiftPannelArrow = lambdaGeneralShiftPannel true;
+        lambdaShiftPannelVimMotion = lambdaGeneralShiftPannel false;
+      in
+        lib.mapAttrsToList lambdaShiftPannelArrow keySet
+        ++ lib.mapAttrsToList lambdaShiftPannelVimMotion keySet
+    )
+    ++ [
+      {
+        mode = ["n"];
+        key = "<Leader><Left>";
+        silent = true;
+        noremap = true;
+        action = ":vsplit<CR><C-w><Left>";
+        desc = "Split vertically and stay on current pannel.";
+      }
+      {
+        mode = ["n"];
+        key = "<Leader><Right>";
+        silent = true;
+        noremap = true;
+        action = ":vsplit<CR>";
+        desc = "Split vertically and go on openned pannel.";
+      }
+      {
+        mode = ["n"];
+        key = "<Leader><Up>";
+        silent = true;
+        noremap = true;
+        action = ":split<CR><C-w><Up>";
+        desc = "Split horizontally and stay on current pannel.";
+      }
+      {
+        mode = ["n"];
+        key = "<Leader><Down>";
+        silent = true;
+        noremap = true;
+        action = ":split<CR>";
+        desc = "Split horizontally and go on openned pannel.";
       }
     ];
 }
