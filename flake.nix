@@ -49,10 +49,10 @@
             ];
         };
       in {
-        # nix run .
-        packages.default = pkgs.buildEnv {
-          name = "nvim";
-          paths = [
+        packages.default = pkgs.writeShellApplication {
+          name = "NVF";
+
+          runtimeInputs = with pkgs; [
             # ======
             # Neovim
             # ======
@@ -61,12 +61,23 @@
             # ============
             # Dependancies
             # ============
-            # S
-            pkgs.xsel
+            # G
+            git
+
+            # L
+            lazygit
+
+            # R
+            ripgrep
+
+            # X
+            xsel
 
             # Y
-            pkgs.yazi
+            yazi
           ];
+
+          text = "exec nvim \"$@\"";
         };
       }
     );
