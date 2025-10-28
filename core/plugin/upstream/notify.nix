@@ -15,6 +15,7 @@ _: {
 
       render = "default";
       stages = "slide";
+      timeout = 5000;
     };
   };
 }
