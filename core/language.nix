@@ -4,6 +4,21 @@ _: {
     enableFormat = true;
     enableExtraDiagnostics = true;
 
+    bash = {
+      enable = true;
+      lsp.enable = true;
+    };
+
+    css = {
+      enable = true;
+      lsp.enable = true;
+    };
+
+    html = {
+      enable = true;
+      treesitter.autotagHtml = true;
+    };
+
     lua = {
       enable = true;
       lsp.enable = true;
@@ -35,16 +50,6 @@ _: {
     };
 
     yaml = {
-      enable = true;
-      lsp.enable = true;
-    };
-
-    html = {
-      enable = true;
-      treesitter.autotagHtml = true;
-    };
-
-    css = {
       enable = true;
       lsp.enable = true;
     };
