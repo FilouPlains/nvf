@@ -37,18 +37,3 @@
   merged_set = lib.recursiveUpdate nvf_package {vim.startPlugins = local_package;};
 in
   merged_set
-# {
-#   vim.startPlugins = [
-#     (import ./plugin/virtcolumn.nix {
-#       buildVimPlugin = buildVimPlugin;
-#       fetchFromGitHub = fetchFromGitHub;
-#     }).package
-#   ];
-#
-#   vim.luaConfigRC.package =  /* lua */ ''
-#     -- require("virtcolumn").setup()
-#   '';
-#
-#   merged_set;
-# }
-
