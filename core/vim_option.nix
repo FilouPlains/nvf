@@ -1,4 +1,4 @@
-_: {
+{pkgs}: {
   vim = {
     options = {
       tabstop = 4;
@@ -23,5 +23,18 @@ _: {
       nvimTree.setupOpts.view.number = true;
       nvimTree.setupOpts.view.relativenumber = true;
     };
-  };
+  #
+  #   lazy.plugins = {
+  #     "csvview.nvim" = {
+  #       package = pkgs.vimPlugins.csvview-nvim;
+  #       setupModule = "csvview";
+  #
+  #       setupOpts = {
+  #         parser.delimiter = {
+  #           ft = {csv = ".";};
+  #         };
+  #       };
+  #     };
+  #   };
+  # };
 }
