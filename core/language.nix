@@ -49,6 +49,15 @@ _: {
       format.type = "styler";
     };
 
+    typst = {
+      enable = true;
+      lsp.enable = true;
+
+      extensions = {
+        typst-preview-nvim.enable = true;
+      };
+    };
+
     yaml = {
       enable = true;
       lsp.enable = true;
