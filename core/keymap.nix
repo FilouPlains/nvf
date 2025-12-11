@@ -244,8 +244,8 @@ in {
             mode = ["n"];
             key =
               if isArrow
-              then "<C-${name}>"
-              else "<C-${value}>";
+              then "<M-${name}>"
+              else "<M-${value}>";
             silent = true;
             action = "<C-w><${name}>";
             desc = "Go to ${lib.strings.toLower name} pannel.";
