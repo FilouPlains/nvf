@@ -40,13 +40,13 @@ _: {
 
     python = {
       enable = true;
-      format.type = "ruff";
+      format.type = ["ruff"];
       lsp.enable = true;
     };
 
     r = {
       enable = true;
-      format.type = "styler";
+      format.type = ["styler"];
     };
 
     typst = {
