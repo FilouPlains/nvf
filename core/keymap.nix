@@ -291,5 +291,13 @@ in {
         action = ":split<CR>";
         desc = "Split horizontally and go on openned pannel.";
       }
+      {
+        mode = ["n"];
+        key = "<Leader>fn";
+        silent = true;
+        noremap = true;
+        action = ":Telescope notify<CR>";
+        desc = "Check notification.";
+      }
     ];
 }
