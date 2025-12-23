@@ -57,5 +57,32 @@ in {
       ];
       desc = "Enable <C-p> to preview typst file.";
     }
+    {
+      enable = true;
+      callback =
+        lib.generators.mkLuaInline
+        /*
+        lua
+        */
+        ''
+          function(args)
+              vim.keymap.set(
+                  "n",
+                  "<C-p>",
+                  ":LivePreview start<CR>",
+                  {
+                      buffer = args.buf,
+                      desc = "Toggle HTML preview.",
+                      silent = true
+                  }
+              )
+          end
+        '';
+      event = ["FileType"];
+      pattern = [
+        "html"
+      ];
+      desc = "Enable <C-p> to preview HTML file.";
+    }
   ];
 }
