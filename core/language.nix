@@ -16,6 +16,12 @@ _: {
 
     html = {
       enable = true;
+
+      lsp = {
+        enable = true;
+        servers = ["emmet-ls"];
+      };
+
       treesitter.autotagHtml = true;
     };
 
@@ -47,6 +53,12 @@ _: {
     r = {
       enable = true;
       format.type = ["styler"];
+    };
+
+    # For typescript and javascript.
+    ts = {
+      enable = true;
+      lsp.enable = true;
     };
 
     typst = {
