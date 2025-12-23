@@ -48,34 +48,90 @@
               })
             ];
         };
+
+        nvimcom = pkgs.rPackages.buildRPackage rec {
+          name = "nvimcom";
+          version = "fef990378e4b5157f23314dca4136bc0079cc2c4";
+
+          src = pkgs.fetchFromGitHub {
+            owner = "R-nvim";
+            repo = "R.nvim";
+            rev = version;
+            hash = "sha256-KgvK2tR6C97Z1WEUbVNHzAe6QKUg0T5FLB9HwO3eay4=";
+          };
+
+          configurePhase =
+            /*
+            bash
+            */
+            ''
+              cd nvimcom
+            '';
+
+          meta = with pkgs.lib; {
+            description = "Intermediate the communication between Neovim and R ";
+            homepage = "https://github.com/R-nvim/R.nvim";
+            license = licenses.gpl3;
+          };
+        };
+
+        # nvimcom = pkgs.rPackages.buildRPackage {
+        #   name = "nvimcom";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "jalvesaq";
+        #     repo = "nvimcom";
+        #     rev = "master"; # or a specific commit for reproducibility
+        #     sha256 = pkgs.lib.fakeSha256; # run once, Nix will tell you real one
+        #   };
+        #   # propagatedBuildInputs = with pkgs.rPackages; []; # no deps
+        # };
+
+        # Custom R with nvimcom
+        myR = pkgs.rWrapper.override {
+          packages = with pkgs.rPackages; [
+            nvimcom
+            styler
+          ];
+        };
       in {
         packages.default = pkgs.writeShellApplication {
           name = "NVF";
 
-          runtimeInputs = with pkgs; [
-            # ======
-            # Neovim
-            # ======
-            nvim.neovim
+          runtimeInputs =
+            (with pkgs; [
+              # ======
+              # Neovim
+              # ======
+              nvim.neovim
 
-            # ============
-            # Dependancies
-            # ============
-            # G
-            git
+              # ============
+              # Dependancies
+              # ============
+              # G
+              git
 
-            # L
-            lazygit
+              # L
+              lazygit
 
-            # R
-            ripgrep
+              # R
+              myR
+              radian
+              ripgrep
 
-            # X
-            xsel
+              # X
+              xsel
 
-            # Y
-            yazi
-          ];
+              # Y
+              yazi
+            ])
+            ++ (with pkgs.vimPlugins; [
+              # ==========
+              # Treesitter
+              # ==========
+              # N
+              nvim-treesitter-parsers.jsonnet
+              nvim-treesitter-parsers.yaml
+            ]);
 
           text = "exec nvim \"$@\"";
         };
