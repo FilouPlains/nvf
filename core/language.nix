@@ -19,7 +19,7 @@ _: {
 
       lsp = {
         enable = true;
-        servers = ["emmet-ls"];
+        servers = ["emmet-ls" "superhtml"];
       };
 
       treesitter.autotagHtml = true;
