@@ -56,7 +56,7 @@ _: {
     };
 
     # For typescript and javascript.
-    ts = {
+    typescript = {
       enable = true;
       lsp.enable = true;
     };
