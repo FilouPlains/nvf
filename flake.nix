@@ -107,6 +107,9 @@
               # ============
               # Dependancies
               # ============
+              #F
+              fish-lsp
+
               # G
               git
 
@@ -131,6 +134,7 @@
               # N
               nvim-treesitter-parsers.jsonnet
               nvim-treesitter-parsers.yaml
+              nvim-treesitter-parsers.fish
             ]);
 
           text = "exec nvim \"$@\"";

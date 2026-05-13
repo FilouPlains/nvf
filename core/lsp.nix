@@ -1,4 +1,7 @@
-_: {
+{pkgs}: let
+  inherit (pkgs) lib;
+  inherit (lib.meta) getExe;
+in {
   vim.lsp = {
     enable = true;
 
@@ -8,6 +11,12 @@ _: {
       hover = "?";
       goToDefinition = "<Leader>g";
       openDiagnosticFloat = "!";
+    };
+
+    servers.fish-lsp = {
+      enable = true;
+      cmd = [(getExe pkgs.fish-lsp) "start"];
+      root_markers = [".git"];
     };
   };
 }
