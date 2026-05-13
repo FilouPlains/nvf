@@ -17,6 +17,7 @@ in {
       enable = true;
       cmd = [(getExe pkgs.fish-lsp) "start"];
       root_markers = [".git"];
+      filetypes = ["fish"];
     };
   };
 }
