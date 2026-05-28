@@ -3,7 +3,7 @@
 
   inputs = {
     # All latest packages.
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/release-25.11";
     flake-utils.url = "github:numtide/flake-utils";
     nvf.url = "github:notashelf/nvf";
   };
